@@ -94,12 +94,29 @@ public class JobData {
      * @return      List of all jobs with at least one field containing the value
      */
     public static ArrayList<HashMap<String, String>> findByValue(String value) {
-
         // load data, if not already loaded
         loadData();
 
+        //store results in jobs
+        ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
+
+        //iterate over each job in the allJobs Hashmap
+        // add the job to the jobs ArrayList, if the job matches the search value
+        for (HashMap<String, String> eachJobRow: allJobs) {
+            for (HashMap.Entry<String, String> eachJob: eachJobRow.entrySet()){
+                if(eachJob.getValue().contains(value)){
+                    jobs.add(eachJobRow);
+                }
+
+            }
+//            jobs.add(eachJobField);
+//          String foundJob = eachJob.keySet();
+//          System.out.println(eachJob.keySet());
+
+        }
+
         // TODO - implement this method
-        return null;
+        return jobs;
     }
 
     /**
