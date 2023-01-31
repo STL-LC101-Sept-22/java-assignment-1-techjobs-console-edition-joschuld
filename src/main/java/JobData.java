@@ -103,17 +103,20 @@ public class JobData {
         //iterate over each job in the allJobs Hashmap
         // add the job to the jobs ArrayList, if the job matches the search value
         for (HashMap<String, String> eachJobRow: allJobs) {
+//            System.out.println(eachJobRow);
             for (HashMap.Entry<String, String> eachJob: eachJobRow.entrySet()){
                 if(eachJob.getValue().contains(value)){
                     jobs.add(eachJobRow);
                 }
-
             }
 //            jobs.add(eachJobField);
 //          String foundJob = eachJob.keySet();
 //          System.out.println(eachJob.keySet());
 
         }
+
+        //remove duplicates from jobs (Searching Portland has 4 results, should be 3 results)
+
 
         // TODO - implement this method
         return jobs;
