@@ -127,7 +127,7 @@ public class TechJobs {
 
 //        System.out.println("printJobs is not implemented yet");
         if (someJobs.size() == 0) {
-            System.out.println("No results");
+            System.out.println("No Results");
         }
         // iterate over the someJobs argument, separate the keys/values, then concatenate them together
         else {
