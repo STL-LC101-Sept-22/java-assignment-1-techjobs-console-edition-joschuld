@@ -5,10 +5,7 @@ import org.apache.commons.csv.CSVRecord;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by LaunchCode
@@ -93,32 +90,54 @@ public class JobData {
      * @param value The search term to look for
      * @return      List of all jobs with at least one field containing the value
      */
-    public static ArrayList<HashMap<String, String>> findByValue(String value) {
+    public static ArrayList<HashMap<String, String>> findByValue(String value)
+    {
         // load data, if not already loaded
         loadData();
 
         //store results in jobs
         ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
 
-        //iterate over each job in the allJobs Hashmap
-        // add the job to the jobs ArrayList, if the job matches the search value
-        for (HashMap<String, String> eachJobRow: allJobs) {
-//            System.out.println(eachJobRow);
-            for (HashMap.Entry<String, String> eachJob: eachJobRow.entrySet()){
-                if(eachJob.getValue().contains(value)){
-                    jobs.add(eachJobRow);
+        // TODO: iterate over each job in the allJobs Hashmap and add the job to the jobs ArrayList,
+        //  if the job matches the search value
+
+        //for loop that goes through each job in the allJobs data
+        for (HashMap<String, String> eachJob: allJobs)
+        {
+            //for loop that goes through eachJob that was grabbed above, then looks at each individual key
+            for (String eachKey : eachJob.keySet())
+            {
+                //gets the value of each key, and stores into keyValue
+                String keyValue = eachJob.get(eachKey);
+
+                //then compares the keyValue to see if it contains what user searched for
+                //simultaneously checking for case-insensitivity by converting both to lowercase
+                if (keyValue.toLowerCase().contains(value.toLowerCase()))
+                {
+                    jobs.add(eachJob);
+
+                    break;
                 }
             }
-//            jobs.add(eachJobField);
-//          String foundJob = eachJob.keySet();
-//          System.out.println(eachJob.keySet());
 
-        }
 
-        //remove duplicates from jobs (Searching Portland has 4 results, should be 3 results)
-
+            // OLD CODE FOR REFERENCE
+//            System.out.println(eachJob);
+//            int count = 0;
+//            for (Map.Entry<String, String> each : eachJob.entrySet()) {  //why does HashMap.Entry work too?
+//                if (each.getValue().contains(value)) {
+//                    count ++;
+//                    if (count >= 2) {
+////                    if (jobs.contains(each.getValue())) {
+//                        System.out.println("We wont add this duplicate to the list!");
+//                    } else {
+//                        jobs.add(eachJob);
+//                    }
+//                }
+//            }
 
         // TODO - implement this method
+        }
         return jobs;
     }
 
