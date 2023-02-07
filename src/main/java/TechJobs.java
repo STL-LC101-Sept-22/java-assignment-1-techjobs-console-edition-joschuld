@@ -127,12 +127,12 @@ public class TechJobs {
 
 //        System.out.println("printJobs is not implemented yet");
         if (someJobs.size() == 0) {
-            System.out.println("No Results");
+            System.out.print("No Results");
         }
         // iterate over the someJobs argument, separate the keys/values, then concatenate them together
         else {
             for (int i = 0 ; i < someJobs.size(); i++) {
-                System.out.println("*****");
+                System.out.println("\n*****");
 
                 //nested with a for each statement//
                 for(Map.Entry<String, String> entry: someJobs.get(i).entrySet()){
@@ -141,7 +141,7 @@ public class TechJobs {
                     System.out.println(key + ": " + value);
                 }
 
-                System.out.println("*****\n");
+                System.out.print("*****\n");
 
             }
         }
